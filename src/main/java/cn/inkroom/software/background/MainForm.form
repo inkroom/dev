@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="cn.inkroom.software.background.MainForm">
+  <grid id="27dc6" binding="root" layout-manager="BorderLayout" hgap="0" vgap="0">
+    <constraints>
+      <xy x="20" y="20" width="543" height="227"/>
+    </constraints>
+    <properties/>
+    <border type="none"/>
+    <children>
+      <grid id="c026d" layout-manager="BorderLayout" hgap="0" vgap="0">
+        <constraints border-constraint="North"/>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="4aef8" class="javax.swing.JButton" binding="button1" default-binding="true">
+            <constraints border-constraint="East"/>
+            <properties>
+              <text value="..."/>
+            </properties>
+          </component>
+          <component id="2f980" class="javax.swing.JTextField" binding="pathText">
+            <constraints border-constraint="Center"/>
+            <properties>
+              <background color="-1"/>
+              <editable value="false"/>
+              <enabled value="false"/>
+              <text value="壁纸所在文件夹"/>
+              <toolTipText value="壁纸所在文件夹"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="99c25" layout-manager="BorderLayout" hgap="0" vgap="0">
+        <constraints border-constraint="South"/>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="18b38" class="javax.swing.JLabel">
+            <constraints border-constraint="West"/>
+            <properties>
+              <text value="切换时间(秒)"/>
+            </properties>
+          </component>
+          <component id="bdfd8" class="javax.swing.JSpinner" binding="timeSpinner">
+            <constraints border-constraint="Center"/>
+            <properties/>
+          </component>
+        </children>
+      </grid>
+      <grid id="bae15" layout-manager="BorderLayout" hgap="0" vgap="0">
+        <constraints border-constraint="Center"/>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="8e4f6" class="javax.swing.JButton" binding="btn">
+            <constraints border-constraint="Center"/>
+            <properties>
+              <text value="启动"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+    </children>
+  </grid>
+</form>
