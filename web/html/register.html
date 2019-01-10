@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style type="text/css">
+        *
+        {
+            margin:0px;
+            padding:0px;
+        }
+        body
+        {
+            background-color: snow;
+        }
+        .container
+        {
+            width:35%;
+            height:65%;
+           background-color: pink;
+            border:2px black solid;
+            position: absolute;
+            top:20%;
+            left:35%;
+
+        }
+        .container_head
+        {
+            background-color: red;
+             height: 20%;
+            text-align: center;
+            font-family: "Arial Black";
+        }
+        .container_ul
+        {
+            margin-top:30px;
+            margin-left:30%;
+        }
+        .container_ul>ul
+        {
+            list-style-type: none;
+
+        }
+        .container_ul>ul>li
+        {
+            margin-top:8px;
+
+        }
+        .container_btn
+        {
+            width:40px;
+            background-color: deeppink;
+            border:1px white solid;
+         margin-top:30px;
+            margin-left:40px;
+        }
+        .container_btn a
+        {
+            color:white;
+            text-decoration: none;
+            padding:3px;
+
+
+        }
+        .container_btn a:hover
+        {
+            background-color: pink;
+        }
+        .container_btn a:active
+        {
+            border-style:inset;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="container_con">
+        <div class="container_head">
+           注册@YOULAN
+        </div>
+        <div class="container_ul">
+
+            <ul>
+                <li><input type="text" name="name" value="姓名"></li>
+                <li><input type="text" name="phoneNumber"value="电话号码"></li>
+                <li><input type="text"name="password" value="密码"></li>
+                <li><input type="text" name="sure"value="确认密码"></li>
+            </ul>
+            <div class="container_btn">
+                <a href="#">注册</a>
+            </div>
+        </div>
+
+    </div>
+</div>
+</body>
+</html>

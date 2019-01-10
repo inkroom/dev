@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript">
+        //获取浏览器的东西用navigator
+        document.write(navigator.appName);
+        document.write("<hr/>");
+        //屏幕
+        document.write(screen.width);
+        document.write(screen.height);
+        //网址地址
+        document.write("<hr/>");
+        document.write(location.href)
+        //设置地址可以实现页面的跳转
+        function convert()
+        {
+            var s=confirm("确定实现页面的跳转吗？");
+            if(s==true)
+            {
+                location.href="load.html";
+            }
+        }
+
+    </script>
+</head>
+<body>
+<input type="button"value="back"onclick="history.forward()">
+<a href="load.html">aaaaa</a>
+
+</body>
+</html>

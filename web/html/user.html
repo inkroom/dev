@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style tyep="text/css">
+
+    </style>
+</head>
+<body>
+
+    <table border="1px" bordercolor="black">
+        <tr><td>操作</td>
+            <td>编号</td>
+            <td>姓名</td>
+        </tr>
+        <tr>
+            <td><input type="button"value="选择"onclick="s1('100','许海琼');"></td>
+            <td>100</td>
+            <td>许海琼</td>
+        </tr>
+        <tr><td><input type="button"value="选择"onclick="s1('101','许清芳');"></td>
+            <td>101</td>
+            <td>许清芳</td>
+        </tr>
+        <tr>
+            <td><input type="button"value="选择"onclick="s1('110','曹逸轩');"></td>
+            <td>110</td>
+            <td>曹逸轩</td>
+        </tr>
+    </table>
+
+<script type="text/javascript">
+
+
+     function s1(num1,name1)
+    {
+        var pre=window.opener;
+        pre.document.getElementById("num").value=num1;
+        pre.document.getElementById("name").value=name1;
+        window.close;
+
+
+    }
+
+</script>
+</body>
+</html>

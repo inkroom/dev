@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        #time
+        {
+            border: dotted;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="time">
+
+    </div>
+
+    <script type="text/javascript">
+        //首先是建立一个动态的时间
+        //所以就要获取当前时间，
+        //然后要把时间的格式转换成和我们平时的格式一样
+        //最主要的就是要没一秒钟时间就要变化一哈，需要特定的方法来实现
+        //先用函数来封装在一个区域里面获取时间到时间的函数
+        function getD1()
+        {
+            var date= new Date();
+            var tm=date.toLocaleString();
+            var t=document.getElementById("time");
+            t.innerHTML=tm;
+        }
+        setInterval("getD1();",1000);
+    </script>
+</body>
+</html>

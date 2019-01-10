@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+
+    </style>
+</head>
+<body>
+行：<input type="text" id="l">
+列：<input type="text" id="r">
+<br/>
+<input type="button" value="生成"id="btn"onclick="crea();">
+
+<script type="text/javascript">
+function crea()
+{
+    /**
+     * 生成行以及列
+     */
+    var com=document.getElementById("l").value;
+    var row=document.getElementById("r").value;
+    var tab="<table >"
+     for( var i=0;i<com;i++)
+     {
+         tab+="<tr>"
+         for(var j=0;j<row;j++)
+         {
+             tad+="<td> </td>>"
+         }
+         tab+="</tr>"
+
+     }
+    tab+="</table>"
+}
+</script>
+</body>
+</html>

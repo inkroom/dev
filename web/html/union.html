@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style type="text/css"></style>
+</head>
+<body>
+<select id=" country" onchange="change(this.value);">
+    <option value="0">--请选择--</option>
+    <option value="中国"> 中国</option>
+    <option value="美国"> 美国</option>
+    <option value="德国"> 德国</option>
+    <option value="日本"> 日本</option>
+
+</select>
+<select id="city">
+
+</select>
+<script type="text/javascript">
+
+    var arry=new Array(4);
+    arry [0]=["中国","成都","北京","厦门"];
+    arry [1]=["美国","华盛顿","纽约"];
+    arry [2]=["德国","摸你黑"];
+    arry [3]=["日本","东京","北海道"];
+   function change( val)
+   {
+         var city1=document.getElementById("city");
+         var num=city1.getElementsByTagName("option");
+         for( var i=0; i<num.length;i++)
+         {
+                 var newo=num[i];
+              city1.removeChild(newo);
+              i--;
+         }
+
+
+          for(var i=0;i<arry.length;i++)
+          {
+             var arry1=arry[i];
+             var fistnode=arry1[0];
+             if(fistnode==val)
+             {
+                 for(var j=1;j<arry1.length;j++)
+                 {
+                     var value=arry1[j];
+                      var op=document.createElement("option");
+                        var string=document.createTextNode(value);
+                        op.appendChild(string);
+                        city1.appendChild(op);
+                 }
+             }
+
+          }
+   }
+</script>
+</body>
+</html>
