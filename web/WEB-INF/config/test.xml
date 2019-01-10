@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<config>
+
+    <role ref="">
+        <!--需要管理员权限的操作-->
+        <url pattern="/admin/**" access="hasRole('ROLE_ADMIN')"/>
+
+        <!--需要一般登陆权限的操作-->
+        <url pattern="/user/**" access="hasAnyRole('ROLE_USER')"/>
+
+    </role>
+    <manager url="/au/fail"/>
+
+    <login url="/login" check="/login" single="true" isRedirect="false" key="test">
+        <success url="/success" ref="diySuccessHandler"/>
+        <fail url="/fail"/>
+    </login>
+
+    <logout url="/logout" returnUrl="/login" ref=""/>
+
+
+</config>

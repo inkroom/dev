@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1">
+    <filter>
+        <filter-name>encodingFilter</filter-name>
+        <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>utf-8</param-value>
+        </init-param>
+
+        <init-param>
+            <param-name>forceEncoding</param-name>
+            <param-value>true</param-value>
+        </init-param>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>encodingFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>path</filter-name>
+        <filter-class>cn.inkroom.web.teach.filters.PathFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>path</filter-name>
+        <url-pattern>/video/*</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>path</filter-name>
+        <url-pattern>/hidden/*</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>path</filter-name>
+        <url-pattern>/v</url-pattern>
+    </filter-mapping>
+    <servlet>
+        <servlet-name>MVC</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>WEB-INF/config/MVC.xml</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>MVC</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>WEB-INF/config/MVC.xml</param-value>
+    </context-param>
+
+    <servlet>
+        <servlet-name>video</servlet-name>
+        <servlet-class>cn.inkroom.web.teach.controllers.VideoServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>video</servlet-name>
+        <url-pattern>/vi</url-pattern>
+    </servlet-mapping>
+
+    <listener>
+    <listener-class>cn.inkroom.web.teach.listener.ContextListener</listener-class>
+    </listener>
+
+    <!--<filter>-->
+    <!--<filter-name>tst</filter-name>-->
+    <!--<filter-class>cn.inkroom.web.security.EntryFilter</filter-class>-->
+    <!--<init-param>-->
+    <!--<param-name>contextFileLocation</param-name>-->
+    <!--<param-value>WEB-INF/config/test.xml</param-value>-->
+    <!--</init-param>-->
+    <!--</filter>-->
+    <!--<filter-mapping>-->
+    <!--<filter-name>tst</filter-name>-->
+    <!--<url-pattern>/*</url-pattern>-->
+    <!--</filter-mapping>-->
+</web-app>

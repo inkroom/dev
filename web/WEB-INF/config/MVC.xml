@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd"
+       default-lazy-init="false">
+
+    <!-- MVC驱动，告诉mvc使用的是注解 -->
+    <mvc:annotation-driven>
+        <!--禁用url后缀匹配-->
+        <mvc:path-matching suffix-pattern="false"/>
+        <!--解决ajax返回中文乱码问题-->
+        <mvc:message-converters>
+            <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+                <property name="supportedMediaTypes" value="*/*;charset=utf-8"/>
+            </bean>
+            <!--<bean id="stringHttpMessageConverter" class="org.springframework.http.converter.StringHttpMessageConverter">-->
+            <!--<constructor-arg value="utf-8" index="0"/>-->
+            <!--<property name="supportedMediaTypes">-->
+            <!--<list>-->
+            <!--<value>text/html;charset=utf-8</value>-->
+            <!--<value>text/json;charset=utf-8</value>-->
+            <!--</list>-->
+            <!--</property>-->
+            <!--</bean>-->
+        </mvc:message-converters>
+    </mvc:annotation-driven>
+    <!-- 自动扫描注解的范围 -->
+    <context:component-scan base-package="cn.inkroom.web.teach"/>
+
+    <context:property-placeholder location="WEB-INF/config/file.properties"/>
+    <!-- 视图解析器，确定前后缀，简化Controller的返回值 -->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/view/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+
+
+    <!--<mvc:resources mapping="/video/**/" location="file:/media/inkbox/study/娱乐/视频/"/>-->
+    <!--<mvc:resources mapping="/hidden/**" location="file:D:\\temp\\qq\\245900986\\Audio\AudioInfo\\"/>-->
+    <mvc:resources mapping="/**" location="/"/>
+    <!--<mvc:interceptors>-->
+    <!--<bean class="cn.inkroom.web.teach.interceptors.Inc"/>-->
+    <!--</mvc:interceptors>-->
+    <!--无效-->
+    <!--<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">-->
+    <!--<property name="messageConverters">-->
+    <!--<list>-->
+    <!--<bean class="org.springframework.http.converter.StringHttpMessageConverter">-->
+    <!--<property name="supportedMediaTypes">-->
+    <!--<list>-->
+    <!--<value>text/html;charset=utf-8</value>-->
+    <!--</list>-->
+    <!--</property>-->
+    <!--</bean>-->
+    <!--</list>-->
+    <!--</property>-->
+    <!--</bean>-->
+
+    <!--ClassNotFound-->
+    <!-- 避免IE执行AJAX时,返回JSON出现下载文件 -->
+    <!--<bean id="mappingJacksonHttpMessageConverter"-->
+    <!--class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">-->
+    <!--<property name="supportedMediaTypes">-->
+    <!--<list>-->
+    <!--<value>text/html;charset=UTF-8</value>-->
+    <!--</list>-->
+    <!--</property>-->
+    <!--</bean>-->
+
+    <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+        <property name="basename" value="message.message"/>
+        <property name="defaultEncoding" value="utf-8"/>
+    </bean>
+    <bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver"/>
+
+    <mvc:interceptors>
+        <bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor"/>
+    </mvc:interceptors>
+
+</beans>
