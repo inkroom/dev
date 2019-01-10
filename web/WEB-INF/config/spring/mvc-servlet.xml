@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <!-- 使用默认的注解映射 -->
+    <mvc:annotation-driven>
+        <mvc:message-converters>
+            <!--<bean class="org.springframework.http.converter.StringHttpMessageConverter">-->
+            <!--<property name="supportedMediaTypes" value="text/html;charset=utf-8"/>-->
+            <!--</bean>-->
+            <bean id="stringHttpMessageConverter" class="org.springframework.http.converter.StringHttpMessageConverter">
+                <constructor-arg value="utf-8" index="0"/>
+                <property name="supportedMediaTypes">
+                    <list>
+                        <!--<value>text/html;charset=utf-8</value>-->
+                        <!--<value>text/json;charset=utf-8</value>-->
+                        <!--<value>application/json;charset=utf-8</value>-->
+                        <!--使用通配符避免由于请求头不同导致不同的ContentType响应头-->
+                        <value>*/*;charset=utf-8</value>
+                    </list>
+                </property>
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
+
+
+    <!-- 自动扫描controller包中的控制器 -->
+    <context:component-scan base-package="cn.inkroom.web.socket"/>
+
+    <!-- 定义一个视图解析器 -->
+    <bean id="viewResolver"
+          class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="suffix" value=".jsp"/>
+        <property name="prefix" value="/WEB-INF/views/"/>
+    </bean>
+    <!--<context:component-scan base-package="cn.mayongfa.controller" />-->
+    <mvc:resources location="/WEB-INF/resource/" mapping="/resource/**"/>
+
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <mvc:exclude-mapping path="/login"/>
+            <mvc:exclude-mapping path="/resource/**"/>
+            <bean class="cn.inkroom.web.socket.interceptors.LoginInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
+
+
+    <!--<import resource="spring-base.xml"/>-->
+</beans>

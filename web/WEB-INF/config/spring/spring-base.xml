@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
+        <property name="url"
+                  value="jdbc:mysql://localhost:3306/flag?useUnicode=true&amp;characterEncoding=utf-8&amp;useSSL=true&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=Hongkong"/>
+        <property name="username" value="inkbox"/>
+        <property name="password" value="inkbox"/>
+        <!-- 连接初始值，连接池启动时创建的连接数量的初始值  默认值是0 -->
+        <property name="initialSize" value="3"/>
+        <!-- 最小空闲值.当空闲的连接数少于阀值时，连接池就会预申请去一些连接，以免洪峰来时来不及申请  默认值是0 -->
+        <property name="minIdle" value="3"/>
+        <!-- 最大空闲值.当经过一个高峰时间后，连接池可以慢慢将已经用不到的连接慢慢释放一部分，一直减少到maxIdle为止 ，0时无限制  默认值是8 -->
+        <property name="maxIdle" value="5"/>
+        <!-- 连接池的最大值，同一时间可以从池分配的最多连接数量，0时无限制   默认值是8 -->
+        <property name="maxTotal" value="15"/>
+    </bean>
+
+    <bean class="java.io.File" id="file">
+        <constructor-arg name="pathname" value="E:\study"/>
+    </bean>
+
+    <!-- c3p0连接池配置 -->
+    <!--<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">-->
+    <!--&lt;!&ndash; 连接数据库的驱动 &ndash;&gt;-->
+    <!--<property name="driverClass" value="${driverClass}" />-->
+    <!--&lt;!&ndash; 连接数据库的URL &ndash;&gt;-->
+    <!--<property name="jdbcUrl" value="${jdbcUrl}" />-->
+    <!--&lt;!&ndash; 用户名 &ndash;&gt;-->
+    <!--<property name="user" value="${user}" />-->
+    <!--&lt;!&ndash; 密码 &ndash;&gt;-->
+    <!--<property name="password" value="password" />-->
+
+    <!--&lt;!&ndash; 连接池中保留的最小连接数，默认为：3 &ndash;&gt;-->
+    <!--<property name="minPoolSize" value="3" />-->
+    <!--&lt;!&ndash; 连接池中保留的最大连接数。默认值: 15 &ndash;&gt;-->
+    <!--<property name="maxPoolSize" value="15" />-->
+    <!--&lt;!&ndash; 初始化连接池中的连接数，取值应在minPoolSize与maxPoolSize之间，默认为3 &ndash;&gt;-->
+    <!--<property name="initialPoolSize" value="3" />-->
+    <!--</bean>-->
+
+
+    <!-- spring和MyBatis完美整合，不需要mybatis的配置映射文件 -->
+    <!--<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">-->
+    <!--<property name="dataSource" ref="dataSource" />-->
+    <!--&lt;!&ndash; 自动扫描mapping.xml文件，**表示迭代查找 &ndash;&gt;-->
+    <!--<property name="mapperLocations" value="WEB-INF/config/*.xml" />-->
+    <!--</bean>-->
+
+    <!-- DAO接口所在包名，Spring会自动查找其下的类 ,包下的类需要使用@MapperScan注解,否则容器注入会失败 -->
+    <!--<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">-->
+    <!--<property name="basePackage" value="com.hua.saf.*"/>-->
+    <!--<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>-->
+    <!--</bean>-->
+
+    <!-- (事务管理)transaction manager, use JtaTransactionManager for global tx -->
+    <!--<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">-->
+    <!--<property name="dataSource" ref="dataSource"/>-->
+    <!--</bean>-->
+
+
+    <!-- 创建SqlSessionFactory，同时指定数据源-->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <!--<property name="configLocation" value="/WEB-INF/config/mybatis/config.xml"/>-->
+        <property name="mapperLocations" value="/WEB-INF/config/mybatis/base.xml"/>
+    </bean>
+
+    <bean factory-bean="sqlSessionFactory" factory-method="openSession"/>
+
+    <!--&lt;!&ndash;创建数据映射器，数据映射器必须为接口&ndash;&gt;-->
+    <!--<bean id="userMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">-->
+    <!--<property name="mapperInterface" value="com.xxt.ibatis.dbcp.dao.UserMapper"/>-->
+    <!--<property name="sqlSessionFactory" ref="sqlSessionFactory"/>-->
+    <!--</bean>-->
+    <!--<bean id="userDaoImpl2" class="com.xxt.ibatis.dbcp.dao.impl.UserDaoImpl2">-->
+    <!--<property name="userMapper" ref="userMapper"/>-->
+    <!--</bean>-->
+    <context:property-placeholder location="WEB-INF/config/properties/*.properties"/>
+
+
+    <bean id="cut" class="cn.inkroom.web.socket.aop.Aop"/>
+
+    <aop:config >
+        <aop:pointcut id="time" expression="execution(* cn.inkroom.web.socket.services.*(..))"/>
+        <aop:advisor advice-ref="cut" pointcut-ref="time"/>
+    </aop:config>
+
+</beans>

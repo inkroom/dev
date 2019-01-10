@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.inkroom.web.socket.sql">
+
+    <resultMap id="resultUser" type="cn.inkroom.web.socket.entities.User">
+        <status property="status" column="state" javaType="cn.inkroom.web.socket.enums.UserStatus" jdbcType="INTEGER"
+                typeHandler="cn.inkroom.web.socket.typeHandler.UserStatusHandler"/>
+    </resultMap>
+
+    <resultMap id="resultBoard" type="cn.inkroom.web.socket.entities.Board">
+        <status property="status" column="state" javaType="cn.inkroom.web.socket.enums.BoardStatus" jdbcType="INTEGER"
+                typeHandler="cn.inkroom.web.socket.typeHandler.BoardStatusHanlder"/>
+    </resultMap>
+
+    <select id="selectBoard" statementType="PREPARED" parameterType="java.lang.Integer"
+            resultMap="resultBoard">
+        SELECT * FROM board WHERE board.state=#{state}
+    </select>
+    <select id="selectUser" statementType="PREPARED" parameterType="cn.inkroom.web.socket.entities.User"
+            resultMap="resultUser">
+        SELECT * FROM users WHERE users.account=#{account} AND users.password = #{password} limit 1
+    </select>
+
+    <!--创建棋局-->
+    <select id="insertBoard" statementType="CALLABLE" parameterType="java.util.Map" resultType="java.lang.Integer">
+        CALL insert_board(#{id})
+    </select>
+    <!--<update id="updateBoard" statementType="PREPARED" parameterType="java.util.Map" useGeneratedKeys="true"-->
+    <!--keyProperty="boardId" keyColumn="id">-->
+    <!--UPDATE board SET-->
+    <!--<if test="chesses != null">-->
+    <!--board.chesses = JSON_ARRAY_INSERT(board.chesses,'$[0]',#{chesses})-->
+    <!--</if>-->
+    <!--<if test="userId!=null">-->
+    <!--, board.black = #{id}-->
+    <!--</if>-->
+    <!--<if test="state!=null">-->
+    <!--, board.state = #{state}-->
+    <!--</if>-->
+    <!--WHERE board.id = #{boardId}-->
+    <!--</update>-->
+
+    <select id="updateBoard" statementType="CALLABLE" parameterType="java.util.Map"
+            resultMap="resultBoard">
+        call insert_chess(#{chess},#{boardId},#{otherUserId})
+    </select>
+
+    <!--加入棋局-->
+    <select id="updateUserAndBoard" statementType="CALLABLE" parameterType="java.util.Map"
+            resultMap="resultBoard">
+      call join_board(#{boardId},#{userId})
+    </select>
+
+    <select id="selectOneBoard" statementType="PREPARED" parameterType="java.lang.Integer"
+            resultMap="resultBoard">
+        SELECT * FROM board WHERE board.id=#{id}
+    </select>
+
+    <select id="updateBoardStatus" statementType="CALLABLE" parameterType="java.util.Map" resultType="java.lang.Integer">
+        call update_board_and_user(#{boardId},#{status})
+    </select>
+</mapper>
