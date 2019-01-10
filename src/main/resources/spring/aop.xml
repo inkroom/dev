@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+
+    <!--关闭redis的操作-->
+
+    <aop:aspectj-autoproxy expose-proxy="true"/>
+
+    
+    <bean id="redisAop" class="cn.inkroom.web.money.gate.aop.RedisAop"/>
+
+    <aop:config>
+        <aop:pointcut expression="execution(public * cn.inkroom.web.money.gate.daos.redis.RedisPool.*(..)) and !execution(public * cn.inkroom.web.money.gate.daos.redis.RedisPool.close())"
+                      id="redisPointcut"/>
+        <aop:advisor advice-ref="redisAop" pointcut-ref="redisPointcut"/>
+        <!--<aop:aspect id="redisAspect" ref="redisAop">-->
+            <!--<aop:after-returning method="afterReturning" pointcut-ref="redisPointcut"/>-->
+        <!--</aop:aspect>-->
+    </aop:config>
+
+    <!--可以添加控制层参数和结果aop日志记录-->
+    <bean id="controllerAop" class="cn.inkroom.web.money.gate.aop.ControllerAop"/>
+    <aop:config>
+
+        <!--<aop:pointcut id="controllerCut" expression="execution(public * cn.inkroom.web.money.gate.utils.encrypt.AESEncryptUtil.*(..))"/>-->
+        <aop:pointcut id="controllerCut" expression="@annotation(org.springframework.web.bind.annotation.RequestMapping)"/>
+        <!--<aop:pointcut id="controllerCut" expression="execution(public * cn.inkroom.web.money.gate.utils.encrypt.*.*(..))"/>-->
+
+        <!--<aop:pointcut id="controllerCut" expression="execution(public * cn.inkroom.web.money.gate.daos.redis.RedisPool.*(..))"/>-->
+
+        <!--<aop:pointcut id="controllerCut"-->
+                      <!--expression="execution(public * cn.inkroom.web.money.gate.controllers.TestController.*(..))"/>-->
+        <aop:advisor advice-ref="controllerAop" pointcut-ref="controllerCut"/>
+
+    </aop:config>
+
+</beans>
