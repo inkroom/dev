@@ -1,0 +1,3 @@
+
+
+基于spring和activeMQ的中间件通信demo
