@@ -1,0 +1,80 @@
+body,
+html {
+	padding: 0;
+	margin: 0;
+	background: white;
+}
+
+.row img {
+	width: 80%;
+}
+
+.thumbnail {
+	border: 0px solid #ddd;
+	margin-bottom: 0px;
+}
+
+.pagination a {
+	border-color: #8A8A8A!important;
+	color: #8A8A8A!important;
+}
+
+.active a {
+	background-color: #DDDDDD!important;
+}
+
+.prod-top {
+	width: 100%;
+	border-bottom: 2px solid #888888;
+	padding-bottom: 0px;
+}
+
+.prod-top-title {
+	float: left;
+	border-bottom: 8px solid #F39801;
+	height: 100%;
+	color: #F39801;
+	font-weight: bold;
+	display: flex;
+	/* 使子元素水平居中 */
+	justify-content: center;
+	/* 使子元素垂直居中 */
+	align-items: center;
+}
+
+.prod-top-title a {
+	padding-top: 0px;
+	text-align: center;
+	font-size: larger;
+	margin-bottom: 10px;
+	color: #F39801;
+	letter-spacing: 30px;
+	text-decoration: none!important;
+	margin-right: -30px;
+}
+
+.prod-top-right {
+	float: right;
+	padding-top: 20px;
+}
+
+.prod-top-right a {
+	float: right;
+	font-size: small;
+	color: #888888;
+}
+
+.prod-middle {
+	width: 100%;
+	margin-top: 20px;
+	overflow: hidden;
+}
+
+.prod-middle p {
+	text-align: center;
+}
+
+.prod-middle ul {
+	float: right;
+	padding-right: 40px;
+}

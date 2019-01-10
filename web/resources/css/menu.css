@@ -1,0 +1,138 @@
+.menu {
+	top: 20px;
+	position: absolute;
+	z-index: 2;
+	padding-left: 2%;
+	margin: 0px;
+	width: 70%;
+	/*padding:0px;*/
+}
+
+.menu li a {
+	color: white;
+	text-decoration: none
+}
+
+.menu ul {
+	margin: 0px;
+	padding: 0px;
+	width: 90%;
+	background: #7F758E;
+	text-align: center;
+	list-style: none;
+	font-weight: normal;
+}
+
+.menu ul li {
+	position: relative;
+	margin-left: 0px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-left: 0px;
+	width: 10%;
+	border: none;
+	float: left;
+}
+
+.menu ul li ul {
+	visibility: hidden;
+	width: 80%;
+	position: absolute;
+	top: 40px;
+	left: 10%;
+}
+
+.menu ul li ul li {
+	width: 100%;
+	float: none;
+	padding: 8px 0px;
+	padding-bottom: :3px;
+	position: relative;
+}
+
+.menu ul li ul li ul {
+	visibility: hidden;
+	position: absolute;
+	left: 100%;
+	top: 0px;
+	height: 25px;
+	width: 100%;
+}
+
+.menu ul li ul li ul li {
+	text-align: center;
+	font-size: 10pt;
+	overflow: hidden;
+	padding-top: 10px;
+}
+
+.menu ul li:hover ul li ul {
+	visibility: hidden;
+}
+
+.menu ul li ul li:hover ul {
+	visibility: visible;
+	color: #000000;
+}
+
+.menu ul li ul li:hover ul li {
+	text-align: center;
+	background: #7F758E;
+	color: #000000;
+}
+
+.menu ul li:hover ul {
+	visibility: visible;
+}
+
+.menu ul li:hover ul li {
+	background: #7F758E;
+	color: #000000;
+}
+
+
+
+/*三级菜单交互*/
+
+.menu ul li ul li ul li:hover {
+	background: #A098AB;
+}
+
+
+/*一级菜单交互*/
+
+.menu ul li:hover {
+	font-weight: 600;
+}
+
+
+/*二级菜单交互*/
+
+.menu ul li ul li:hover {
+	background: #A098AB;
+}
+
+
+
+
+#topb li a {
+	color: #0C124D;
+}
+
+#topb li li a {
+	color: white;
+}
+#topb{
+	background: white;
+}
+
+
+ .menu .topcolor:hover {
+	padding-top: 28px;
+	border-top: 4px solid #0C9FDE;
+}
+
+#topb .menu .topcolor:hover {
+	padding-top: 28px;
+	border-top: 4px solid #717171;
+}

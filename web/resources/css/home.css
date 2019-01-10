@@ -1,0 +1,113 @@
+html,
+body {
+	width: 100%;
+	margin: 0;
+	padding: 0;
+	background: #DDDDDD;
+}
+
+.top {
+	height: 80px;
+	width: 100%;
+	background: #0E1251;
+	
+}
+
+.top1 {
+	height: 80px;
+	float: left;
+}
+
+.top img {
+	height: 80px;
+}
+
+.middle-info {
+	padding: 10px;
+	width: 90%;
+	background-color: white;
+}
+
+.middle-txt {
+	color: #C9C9C9;
+	padding-left: 2%;
+	padding-top: 2%;
+	padding-bottom: 2%;
+	background-color: ;
+	width: 100%;
+}
+
+.middle-txt a {
+	color: #C9C9C9;
+	margin-top: 10px;
+	font-size: 1.4rem;
+}
+
+.middle-txt ul {
+	list-style-type: none;
+	padding: 0;
+}
+
+.middle-txt li {
+	padding-top: 10px;
+}
+
+.middle-img {
+	width: 100%;
+	overflow: hidden;
+	padding: 5px;
+}
+
+.middle-img img {
+	width: 100%;
+	border-radius: 14px;
+}
+
+.middle {
+	padding: 40px 0px;
+	width: 100%;
+	display: flex;
+	/* 使子元素水平居中 */
+	justify-content: center;
+	/* 使子元素垂直居中 */
+	align-items: center;
+}
+
+.middle-bg {
+	float: left;
+	background-color: white;
+	width: 26%;
+	margin: 0px 10px;
+	overflow: hidden;
+	display: flex;
+	/* 使子元素水平居中 */
+	justify-content: center;
+	/* 使子元素垂直居中 */
+	align-items: center;
+}
+
+.middle-info-top {
+	width: 100%;
+	background-color: white;
+	overflow: hidden;
+	border-bottom: 2px solid #0C9FDE;
+	margin-bottom: 4px;
+}
+
+.middle-info-top a {
+	float: right;
+	margin-top: -10px;
+	color: #C7C7C7;
+}
+
+.middle-info-top1 img {
+	width: 16%;
+}
+
+.middle-info-top1 a {
+	float: none;
+	color: #04A4E1;
+	font-size: large;
+	padding-left: 8px;
+	text-decoration: none;
+}

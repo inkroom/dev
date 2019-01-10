@@ -1,0 +1,27 @@
+.mainFrame{
+	float: right;
+	margin-right: 6%;
+	width: 66%;
+}
+
+.top-img{
+	width: 100%;
+	overflow: hidden;
+	border-bottom: 2px solid white;
+	padding-top:2px;
+}
+.top-img img{
+	width: 100%;
+}
+.technical-middle{
+	background: white;width: 100%; 
+	margin-top: 6px;
+	padding-top: 4%;
+	padding-bottom:4% ;
+}
+.pt-menu-left{
+	float: left;
+	padding-left: 4%;
+	float: left;padding-left: 4%;
+	margin-top: -15px;
+}

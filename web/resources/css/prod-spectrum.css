@@ -1,0 +1,36 @@
+html,
+body {
+	width: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+h1 {
+	text-align: center;
+	margin-top: 0;
+}
+
+img {
+	float: left;
+	padding-right: 10px;
+	height: 300px;
+}
+
+ol {
+	list-style-type: decimal-leading-zero;
+}
+
+th {
+	text-align: center;
+	background: #73A741;
+	color: white;
+	border-color: #73A741!important;
+}
+
+tr {
+	text-align: center;
+}
+
+td {
+	border-color: #73A741!important;
+}

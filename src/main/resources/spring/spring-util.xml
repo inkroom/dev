@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+	">
+
+
+	<!--可以通过更换秘钥，更换加密方式-->
+	<bean id="aes" class="cn.inkroom.web.money.gate.utils.encrypt.AESEncryptUtil">
+		<constructor-arg name="key" value="abcdef0123452126"/>
+		<constructor-arg name="parameter" value="0125556789abcdef"/>
+	</bean>
+
+
+	<bean class="cn.inkroom.web.money.gate.handler.spring.PropertiesPlaceholder">
+		<!--将对password字段进行解密-->
+		<constructor-arg ref="aes"/>
+
+		<property name="fileEncoding" value="UTF-8"/>
+		<property name="locations" value="classpath:properties/*.properties"/>
+	</bean>
+
+
+</beans>
